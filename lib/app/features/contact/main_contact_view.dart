@@ -175,49 +175,49 @@ class _MainContactViewState extends State<MainContactView> {
       child: SlideFadeOnVisibleComp(
         offsetX: 0,
         duration: const Duration(seconds: 5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            HoverScaleWrapper(
-              scale: 1.2,
-              child: Column(
-                children: [
-                  Text(
-                    "KONTAK",
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: _theme.getHighFontColor,
+        child: Obx(
+          () => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              HoverScaleWrapper(
+                scale: 1.2,
+                child: Column(
+                  children: [
+                    Text(
+                      "KONTAK",
+                      style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                        color: _theme.getHighFontColor,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 5),
-                  Container(
-                    width: 50,
-                    height: 6,
-                    decoration: BoxDecoration(
-                      color: _theme.getSoftFontColor,
-                      borderRadius: BorderRadius.circular(10),
+                    const SizedBox(height: 5),
+                    Container(
+                      width: 50,
+                      height: 6,
+                      decoration: BoxDecoration(
+                        color: _theme.getSoftFontColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 30),
-            HoverScaleWrapper(
-              scale: 1.03,
-              child: Text(
-                "Silakan isi formulir di bawah ini untuk menghubungi saya. Pesan Anda akan langsung dikirim ke email saya dan akan saya balas secepat mungkin.",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: _theme.getHighFontColor,
+                  ],
                 ),
               ),
-            ),
-            const SizedBox(height: 80),
-            Obx(
-              () => Form(
+              const SizedBox(height: 30),
+              HoverScaleWrapper(
+                scale: 1.03,
+                child: Text(
+                  "Silakan isi formulir di bawah ini untuk menghubungi saya. Pesan Anda akan langsung dikirim ke email saya dan akan saya balas secepat mungkin.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: _theme.getHighFontColor,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 80),
+              Form(
                 key: _formKey,
                 child: Center(
                   child: Column(
@@ -296,8 +296,8 @@ class _MainContactViewState extends State<MainContactView> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
