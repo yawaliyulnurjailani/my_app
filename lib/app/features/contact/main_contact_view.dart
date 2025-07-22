@@ -172,7 +172,7 @@ class _MainContactViewState extends State<MainContactView> {
       padding: const EdgeInsets.fromLTRB(20, 100, 20, 100),
       child: SlideFadeOnVisibleComp(
         offsetX: 0,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 2),
         child: Obx(
           () => Column(
             mainAxisAlignment: MainAxisAlignment.center,

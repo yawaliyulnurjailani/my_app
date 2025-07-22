@@ -5,7 +5,7 @@ class SlideFadeOnVisibleComp extends StatefulWidget {
   const SlideFadeOnVisibleComp({
     super.key,
     required this.child,
-    this.duration = const Duration(milliseconds: 3000),
+    this.duration = const Duration(milliseconds: 1000),
     this.curve = Curves.easeOut,
     this.offsetX = 300.0,
     this.visibleFraction = 0.2,

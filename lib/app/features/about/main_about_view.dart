@@ -88,7 +88,7 @@ class _MainAboutViewState extends State<MainAboutView> {
           SlideFadeOnVisibleComp(
             enableReverse: true,
             offsetX: 0,
-            duration: const Duration(seconds: 5),
+            duration: const Duration(seconds: 2),
             child: buildTitle(),
           ),
           const SizedBox(height: 80),

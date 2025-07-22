@@ -94,7 +94,7 @@ class _MainProjectViewState extends State<MainProjectView> {
           SlideFadeOnVisibleComp(
             enableReverse: true,
             offsetX: 0,
-            duration: const Duration(seconds: 5),
+            duration: const Duration(seconds: 2),
             child: _buildTitle(),
           ),
           const SizedBox(height: 80),
@@ -113,7 +113,7 @@ class _MainProjectViewState extends State<MainProjectView> {
         child: SlideFadeOnVisibleComp(
           enableReverse: true,
           offsetX: 0,
-          duration: const Duration(seconds: 5),
+          duration: const Duration(seconds: 2),
           child: Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
