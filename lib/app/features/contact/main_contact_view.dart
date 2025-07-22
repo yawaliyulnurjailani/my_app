@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:emailjs/emailjs.dart' as emailjs;
 import 'package:intl/intl.dart';
@@ -30,8 +29,8 @@ class _MainContactViewState extends State<MainContactView> {
     if (_formKey.currentState!.validate()) {
       try {
         await emailjs.send(
-          dotenv.env['emailjs_service_key']!,
-          dotenv.env['emailjs_template_key']!,
+          "YOUR_SERVICE_KEY",
+          "YOUR_TEMPLATE_KEY",
           {
             "title": "Portofolio Notification",
             "name": _nameController.text,
@@ -40,10 +39,10 @@ class _MainContactViewState extends State<MainContactView> {
             "message": _messageController.text,
             "email": _emailController.text,
           },
-          emailjs.Options(
-            publicKey: dotenv.env['emailjs_public_key'],
-            privateKey: dotenv.env['emailjs_private_key'],
-            limitRate: const emailjs.LimitRate(
+          const emailjs.Options(
+            publicKey: "YOUR_PUBLIC_KEY",
+            privateKey: "YOUR_PRIVATE_KEY",
+            limitRate: emailjs.LimitRate(
               id: 'app',
               throttle: 10000,
             ),
@@ -66,7 +65,6 @@ class _MainContactViewState extends State<MainContactView> {
           ),
         );
       } catch (error) {
-        print(error);
         if (error is emailjs.EmailJSResponseStatus) {
           SnackbarComp.snackDefault(
             title: "Gagal!",

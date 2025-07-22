@@ -31,6 +31,9 @@ class ThemeController extends GetxController {
   var setSoftContainerColor = CustomStyle.lightSoftContainerColor.obs;
   Color get getSoftContainerColor => setSoftContainerColor.value;
 
+  var setLogoColor = CustomStyle.lightLogoColor.obs;
+  Color get getLogoColor => setLogoColor.value;
+
   @override
   void onInit() {
     setIsDarkMode.value = true;
@@ -62,6 +65,8 @@ class ThemeController extends GetxController {
     setBorderLayoutColor.value = getIsDarkMode
         ? CustomStyle.darkBorderLayoutColor
         : CustomStyle.lightBorderLayoutColor;
+    setLogoColor.value =
+        getIsDarkMode ? CustomStyle.darkLogoColor : CustomStyle.lightLogoColor;
     setThemeData.value = ThemeData(
       brightness: getIsDarkMode ? Brightness.dark : Brightness.light,
       scaffoldBackgroundColor: getBackgroundColor,

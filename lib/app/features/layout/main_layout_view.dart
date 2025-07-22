@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../assets/style/custom_style.dart';
+import '../../components/hover_scale_wrap_comp.dart';
 import '../../controllers/layout_controller.dart';
 import '../../controllers/theme_controller.dart';
 import '../about/main_about_view.dart';
@@ -57,13 +58,18 @@ class _MainLayoutViewState extends State<MainLayoutView> {
                       centerTitle: false,
                       toolbarHeight: 80,
                       elevation: 0,
-                      // title: const Text(
-                      //   "YAWALIYUL ",
-                      //   style: TextStyle(
-                      //     fontSize: 28,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
+                      title: HoverScaleWrapper(
+                        onTap: () {
+                          _layout.scrollToView(_layout.homeKey);
+                        },
+                        child: Image.asset(
+                          "${CustomStyle.urlImage}/ynj-removebg.png",
+                          width: 95,
+                          height: 95,
+                          filterQuality: FilterQuality.high,
+                          color: _theme.getLogoColor,
+                        ),
+                      ),
                       actions: CustomStyle.conditionDevice(context)
                           ? null
                           : [NavbarView()],

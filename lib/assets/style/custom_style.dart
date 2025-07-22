@@ -9,7 +9,7 @@ class CustomStyle {
   static const Color lightButtonAreaColor = Color(0xFFebe5dd);
   static const Color lightButtonHoverColor = Color(0xFFC7B299);
   static const Color lightSoftContainerColor = Color(0xFFebe5dd);
-  // static const Color lightButtonColor = Color(0xFF483507);
+  static const Color lightLogoColor = Color(0xFF483507);
   // static const Color lightStyleButtonColor = Color(0xFFc2bdb5);
 
   static const Color darkHighFontColor = Color(0xFFFFFFFF);
@@ -19,7 +19,7 @@ class CustomStyle {
   static const Color darkButtonAreaColor = Color(0xFF1f2b3e);
   static const Color darkButtonHoverColor = Color(0xFF1F3A5F);
   static const Color darkSoftContainerColor = Color(0xFF1f2b3e);
-  // static const Color darkButtonColor = Color(0xFFcee8ff);
+  static const Color darkLogoColor = Color(0xFFcee8ff);
   // static const Color darkStyleButtonColor = Color(0xFF374357);
 
   static const String urlIcon = "lib/assets/icons";
