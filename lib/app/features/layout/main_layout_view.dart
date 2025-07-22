@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../assets/style/custom_style.dart';
+import '../../controllers/layout_controller.dart';
 import '../../controllers/theme_controller.dart';
 import '../about/main_about_view.dart';
-import '../experience/main_experience_view.dart';
+import '../contact/main_contact_view.dart';
+import '../project/main_project_view.dart';
+import '../home/main_home_view.dart';
 import 'navbar_view.dart';
 import 'sidebar_view.dart';
 
@@ -17,6 +20,7 @@ class MainLayoutView extends StatefulWidget {
 
 class _MainLayoutViewState extends State<MainLayoutView> {
   final ThemeController _theme = Get.put(ThemeController());
+  final LayoutController _layout = Get.put(LayoutController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +57,13 @@ class _MainLayoutViewState extends State<MainLayoutView> {
                       centerTitle: false,
                       toolbarHeight: 80,
                       elevation: 0,
-                      title: const Text(
-                        "YAWALIYUL",
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      // title: const Text(
+                      //   "YAWALIYUL ",
+                      //   style: TextStyle(
+                      //     fontSize: 28,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
                       actions: CustomStyle.conditionDevice(context)
                           ? null
                           : [NavbarView()],
@@ -74,20 +78,60 @@ class _MainLayoutViewState extends State<MainLayoutView> {
                           child: ScrollConfiguration(
                             behavior: ScrollConfiguration.of(context)
                                 .copyWith(scrollbars: false),
-                            child: const SingleChildScrollView(
-                              physics: BouncingScrollPhysics(
+                            child: SingleChildScrollView(
+                              controller: _layout.scrollController,
+                              physics: const BouncingScrollPhysics(
                                 parent: AlwaysScrollableScrollPhysics(),
                               ),
                               child: Column(
                                 children: [
-                                  MainAboutView(),
-                                  MainExperienceView(),
+                                  Container(
+                                    key: _layout.homeKey,
+                                    child: const MainHomeView(),
+                                  ),
+                                  Container(
+                                    key: _layout.aboutKey,
+                                    child: const MainAboutView(),
+                                  ),
+                                  Container(
+                                    key: _layout.projectKey,
+                                    child: const MainProjectView(),
+                                  ),
+                                  Container(
+                                    key: _layout.contactKey,
+                                    child: const MainContactView(),
+                                  ),
                                 ],
                               ),
                             ),
                           ),
                         ),
                       ],
+                    ),
+                    floatingActionButton: Obx(
+                      () {
+                        if (_layout.getScrollToTop) {
+                          return FloatingActionButton(
+                            backgroundColor: _theme.getButtonAreaColor,
+                            foregroundColor: _theme.getSoftFontColor,
+                            elevation: 0,
+                            onPressed: () {
+                              _layout.scrollController.animateTo(
+                                0,
+                                duration: const Duration(
+                                  milliseconds: 3000,
+                                ),
+                                curve: Curves.bounceOut,
+                              );
+                            },
+                            child: Icon(
+                              Icons.arrow_upward_rounded,
+                              color: _theme.getSoftFontColor,
+                            ),
+                          );
+                        }
+                        return const SizedBox();
+                      },
                     ),
                   ),
                 ),

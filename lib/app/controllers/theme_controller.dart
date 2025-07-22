@@ -22,40 +22,14 @@ class ThemeController extends GetxController {
   var setBorderLayoutColor = CustomStyle.lightBorderLayoutColor.obs;
   Color get getBorderLayoutColor => setBorderLayoutColor.value;
 
-  var setTextButtonAreaColor = CustomStyle.lightTextButtonAreaColor.obs;
-  Color get getTextButtonAreaColor => setTextButtonAreaColor.value;
+  var setButtonAreaColor = CustomStyle.lightButtonAreaColor.obs;
+  Color get getButtonAreaColor => setButtonAreaColor.value;
 
-  var setTextButtonHoverColor = CustomStyle.lightTextButtonHoverColor.obs;
-  Color get getTextButtonHoverColor => setTextButtonHoverColor.value;
+  var setButtonHoverColor = CustomStyle.lightButtonHoverColor.obs;
+  Color get getButtonHoverColor => setButtonHoverColor.value;
 
   var setSoftContainerColor = CustomStyle.lightSoftContainerColor.obs;
   Color get getSoftContainerColor => setSoftContainerColor.value;
-
-  // static final lightTheme = ThemeData(
-  //   brightness: Brightness.light,
-  //   primaryColor: Colors.blue,
-  //   scaffoldBackgroundColor: Colors.white,
-  //   appBarTheme: const AppBarTheme(
-  //     backgroundColor: lightBackgroundColor,
-  //     foregroundColor: lightHighFontColor,
-  //   ),
-  //   textTheme: const TextTheme(
-  //     bodyMedium: TextStyle(color: Colors.black),
-  //   ),
-  // );
-
-  // static final darkTheme = ThemeData(
-  //   brightness: Brightness.dark,
-  //   primaryColor: Colors.teal,
-  //   scaffoldBackgroundColor: Colors.black,
-  //   appBarTheme: const AppBarTheme(
-  //     backgroundColor: lightTextButtonAreaColor,
-  //     foregroundColor: Colors.white,
-  //   ),
-  //   textTheme: const TextTheme(
-  //     bodyMedium: TextStyle(color: Colors.white),
-  //   ),
-  // );
 
   @override
   void onInit() {
@@ -67,15 +41,18 @@ class ThemeController extends GetxController {
   void settingThemeData() {
     setIsDarkMode.value = getIsDarkMode ? false : true;
     Get.changeThemeMode(getIsDarkMode ? ThemeMode.dark : ThemeMode.light);
+    setHighFontColor.value = getIsDarkMode
+        ? CustomStyle.darkHighFontColor
+        : CustomStyle.lightHighFontColor;
     setSoftFontColor.value = getIsDarkMode
         ? CustomStyle.darkSoftFontColor
         : CustomStyle.lightSoftFontColor;
-    setTextButtonAreaColor.value = getIsDarkMode
-        ? CustomStyle.darkTextButtonAreaColor
-        : CustomStyle.lightTextButtonAreaColor;
-    setTextButtonHoverColor.value = getIsDarkMode
-        ? CustomStyle.darkTextButtonHoverColor
-        : CustomStyle.lightTextButtonHoverColor;
+    setButtonAreaColor.value = getIsDarkMode
+        ? CustomStyle.darkButtonAreaColor
+        : CustomStyle.lightButtonAreaColor;
+    setButtonHoverColor.value = getIsDarkMode
+        ? CustomStyle.darkButtonHoverColor
+        : CustomStyle.lightButtonHoverColor;
     setSoftContainerColor.value = getIsDarkMode
         ? CustomStyle.darkSoftContainerColor
         : CustomStyle.lightSoftContainerColor;
@@ -90,14 +67,13 @@ class ThemeController extends GetxController {
       scaffoldBackgroundColor: getBackgroundColor,
       appBarTheme: AppBarTheme(
         backgroundColor: getBackgroundColor,
-        // foregroundColor: getLightHighFontColor,
       ),
       textTheme: TextTheme(
         bodyMedium: TextStyle(color: getSoftFontColor),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: getTextButtonHoverColor,
+          foregroundColor: getButtonHoverColor,
           textStyle: const TextStyle(fontSize: 16),
         ),
       ),

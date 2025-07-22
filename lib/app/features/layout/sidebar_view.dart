@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../components/text_button_comp.dart';
+import '../../controllers/layout_controller.dart';
 import '../../controllers/theme_controller.dart';
 
 class SidebarView extends StatelessWidget {
   SidebarView({super.key});
 
   final ThemeController _theme = Get.find();
+  final LayoutController _layout = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +29,21 @@ class SidebarView extends StatelessWidget {
                   _theme.settingThemeData();
                 },
                 textHoverColor: _theme.getHighFontColor,
-                hoverColor: _theme.getTextButtonHoverColor,
+                hoverColor: _theme.getButtonHoverColor,
                 padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
               ),
             ),
-            sideMenu("About"),
-            sideMenu("Education"),
-            sideMenu("Experience"),
-            sideMenu("Contact"),
+            sideMenu("Beranda", _layout.homeKey),
+            sideMenu("Tentang Saya", _layout.aboutKey),
+            sideMenu("Proyek", _layout.projectKey),
+            sideMenu("Kontak", _layout.contactKey),
           ],
         ),
       ),
     );
   }
 
-  Widget sideMenu(String title) {
+  Widget sideMenu(String title, GlobalKey key) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: TextButtonComp.textButton1(
@@ -52,9 +54,12 @@ class SidebarView extends StatelessWidget {
             color: _theme.getSoftFontColor,
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          _layout.scrollToView(key);
+          Get.back();
+        },
         textHoverColor: _theme.getHighFontColor,
-        hoverColor: _theme.getTextButtonHoverColor,
+        hoverColor: _theme.getButtonHoverColor,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
       ),
     );
