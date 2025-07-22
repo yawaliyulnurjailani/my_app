@@ -29,13 +29,13 @@ This repository contains the source code for my personal portfolio website built
 
 ## 🔧 Tech Stack
 
-| Category             | Tools/Frameworks                        |
-| -------------------- | --------------------------------------- |
-| **Framework**        | Flutter                                 |
-| **State Management** | GetX, url_launcher, visibility_detector |
-| **Styling**          | Flutter Widgets + Custom Themes         |
-| **Icons**            | Icons8                                  |
-| **Deployment**       | GitHub Pages (Flutter Web)              |
+| Category             | Tools/Frameworks                                                       |
+| -------------------- | ---------------------------------------------------------------------- |
+| **Framework**        | Flutter                                                                |
+| **State Management** | GetX, url_launcher, intl, visibility_detector, emailjs, flutter_dotenv |
+| **Styling**          | Flutter Widgets + Custom Themes                                        |
+| **Icons**            | Icons8                                                                 |
+| **Deployment**       | GitHub Pages (Flutter Web)                                             |
 
 ---
 

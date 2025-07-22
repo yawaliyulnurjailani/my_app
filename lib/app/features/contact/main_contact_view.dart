@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:emailjs/emailjs.dart' as emailjs;
 import 'package:intl/intl.dart';
-
-import '../../../assets/style/custom_style.dart';
 import '../../components/hover_scale_wrap_comp.dart';
 import '../../components/slide_fade_on_visible_comp.dart';
 import '../../components/snackbar_comp.dart';
@@ -30,29 +29,29 @@ class _MainContactViewState extends State<MainContactView> {
   void sendEmail() async {
     if (_formKey.currentState!.validate()) {
       try {
-        // await emailjs.send(
-        //   'service_guz5kwi',
-        //   'template_ks8z6tm',
-        //   {
-        //     "title": "Portofolio Notification",
-        //     "name": _nameController.text,
-        //     "time":
-        //         DateFormat('d MMM y, HH.mm', 'id_ID').format(now).toString(),
-        //     "message": _messageController.text,
-        //     "email": _emailController.text,
-        //   },
-        //   const emailjs.Options(
-        //     publicKey: 'CJs-9XhSARt4qDFLT',
-        //     privateKey: 'gkpyhEk2879gY-ZqpqO7J',
-        //     limitRate: emailjs.LimitRate(
-        //       id: 'app',
-        //       throttle: 10000,
-        //     ),
-        //   ),
-        // );
-        // _nameController.clear();
-        // _emailController.clear();
-        // _messageController.clear();
+        await emailjs.send(
+          dotenv.env['emailjs_service_key']!,
+          dotenv.env['emailjs_template_key']!,
+          {
+            "title": "Portofolio Notification",
+            "name": _nameController.text,
+            "time":
+                DateFormat('d MMM y, HH.mm', 'id_ID').format(now).toString(),
+            "message": _messageController.text,
+            "email": _emailController.text,
+          },
+          emailjs.Options(
+            publicKey: dotenv.env['emailjs_public_key'],
+            privateKey: dotenv.env['emailjs_private_key'],
+            limitRate: const emailjs.LimitRate(
+              id: 'app',
+              throttle: 10000,
+            ),
+          ),
+        );
+        _nameController.clear();
+        _emailController.clear();
+        _messageController.clear();
         SnackbarComp.snackDefault(
           title: "Berhasil!",
           message: "Email berhasil terkirim",
@@ -67,10 +66,11 @@ class _MainContactViewState extends State<MainContactView> {
           ),
         );
       } catch (error) {
+        print(error);
         if (error is emailjs.EmailJSResponseStatus) {
           SnackbarComp.snackDefault(
             title: "Gagal!",
-            message: "Email Error : error",
+            message: "Email Error : $error",
             backgroundColor: Colors.red.shade100,
             titleColor: Colors.red,
             messageColor: Colors.red,
@@ -84,7 +84,7 @@ class _MainContactViewState extends State<MainContactView> {
         } else {
           SnackbarComp.snackDefault(
             title: "Gagal!",
-            message: "Error : error",
+            message: "Error : $error",
             backgroundColor: Colors.red.shade100,
             titleColor: Colors.red,
             messageColor: Colors.red,
